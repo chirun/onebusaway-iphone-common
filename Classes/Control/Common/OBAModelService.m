@@ -3,7 +3,7 @@
 #import "UIDeviceExtensions.h"
 #import "OBASearchController.h"
 #import "OBASphericalGeometryLibrary.h"
-#import "SBJSON/SBJson.h"
+#import "SBJson.h"
 
 
 static const float kSearchRadius = 400;
@@ -33,6 +33,7 @@ static const float kSearchRadius = 400;
 @synthesize modelFactory = _modelFactory;
 @synthesize references = _references;
 @synthesize obaJsonDataSource = _obaJsonDataSource;
+@synthesize obaRegionJsonDataSource = _obaRegionJsonDataSource;
 @synthesize googleMapsJsonDataSource = _googleMapsJsonDataSource;
 @synthesize googlePlacesJsonDataSource = _googlePlacesJsonDataSource;
 @synthesize locationManager = _locationManager;
@@ -44,6 +45,7 @@ static const float kSearchRadius = 400;
 	[_modelDao release];
 	[_modelFactory release];
 	[_obaJsonDataSource release];
+    [_obaRegionJsonDataSource release];
 	[_googleMapsJsonDataSource release];
 	[_locationManager release];
 	[super dealloc];
@@ -129,6 +131,14 @@ static const float kSearchRadius = 400;
 	SEL selector = @selector(getRoutesV2FromJSON:error:);
 	
 	return [self request:url args:args selector:selector delegate:delegate context:context];
+}
+
+- (id<OBAModelServiceRequest>) requestRegions:(id<OBAModelServiceDelegate>)delegate withContext:(id)context {
+    NSString * url = @"/regions.json";
+    NSString * args = @"";
+    SEL selector = @selector(getRegionsV2FromJson:error:);
+    
+    return [self request:_obaRegionJsonDataSource url:url args:args selector:selector delegate:delegate context:context];
 }
 
 - (id<OBAModelServiceRequest>) placemarksForAddress:(NSString*)address withDelegate:(id<OBAModelServiceDelegate>)delegate withContext:(id)context {

@@ -32,6 +32,7 @@
 	OBAModelDAO * _modelDao;
 	OBAModelFactory * _modelFactory;
 	OBAJsonDataSource * _obaJsonDataSource;
+    OBAJsonDataSource * _obaRegionJsonDataSource;
 	OBAJsonDataSource * _googleMapsJsonDataSource;
     OBAJsonDataSource * _googlePlacesJsonDataSource;
 	OBALocationManager * _locationManager;
@@ -41,6 +42,7 @@
 @property (nonatomic,retain) OBAModelDAO * modelDao;
 @property (nonatomic,retain) OBAModelFactory * modelFactory;
 @property (nonatomic,retain) OBAJsonDataSource * obaJsonDataSource;
+@property (nonatomic,retain) OBAJsonDataSource * obaRegionJsonDataSource;
 @property (nonatomic,retain) OBAJsonDataSource * googleMapsJsonDataSource;
 @property (nonatomic,retain) OBAJsonDataSource * googlePlacesJsonDataSource;
 @property (nonatomic,retain) OBALocationManager * locationManager;
@@ -60,6 +62,7 @@
 - (id<OBAModelServiceRequest>) placemarksForAddress:(NSString*)address withDelegate:(id<OBAModelServiceDelegate>)delegate withContext:(id)context;
 - (id<OBAModelServiceRequest>) placemarksForPlace:(NSString*)name withDelegate:(id<OBAModelServiceDelegate>)delegate withContext:(id)context;
 
+- (id<OBAModelServiceRequest>) requestRegions:(id<OBAModelServiceDelegate>)delegate withContext:(id)context;
 
 - (id<OBAModelServiceRequest>) requestAgenciesWithCoverageWithDelegate:(id<OBAModelServiceDelegate>)delegate withContext:(id)context;
 

@@ -16,7 +16,7 @@
 
 #import "OBAJsonDataSource.h"
 #import "OBALogger.h"
-#import "SBJSON/SBJson.h"
+#import "SBJson.h"
 
 
 /****
